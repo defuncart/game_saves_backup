@@ -9,6 +9,8 @@ void main() {
   generateSteamCover(onBuildCover: (size) => Theme(data: darkTheme, child: SteamAsset(size: size)));
 
   generateSteamBackground(onBuildBackground: (size) => Theme(data: darkTheme, child: SteamAsset(size: size)));
+
+  generateSteamLogo(onBuildLogo: (size) => const SizedBox.shrink());
 }
 
 class SteamAsset extends StatelessWidget {
