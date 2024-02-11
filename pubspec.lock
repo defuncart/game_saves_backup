@@ -25,6 +25,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.3"
+  app_store_screenshots:
+    dependency: "direct dev"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "75e9c4225822de80a5d76ac71106bdfd54d604be"
+      url: "https://github.com/defuncart/app_store_screenshots"
+    source: git
+    version: "0.0.1"
   arb_generator:
     dependency: "direct dev"
     description:
@@ -249,6 +258,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.4"
+  device_frame:
+    dependency: transitive
+    description:
+      name: device_frame
+      sha256: afe76182aec178d171953d9b4a50a43c57c7cf3c77d8b09a48bf30c8fa04dd9d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   equatable:
     dependency: transitive
     description:
@@ -429,6 +446,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  golden_toolkit:
+    dependency: transitive
+    description:
+      name: golden_toolkit
+      sha256: "8f74adab33154fe7b731395782797021f97d2edc52f7bfb85ff4f1b5c4a215f0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.0"
   graphs:
     dependency: transitive
     description:
