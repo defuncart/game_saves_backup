@@ -28,6 +28,10 @@ Looking for more functionality? Check out [ludusavi](https://github.com/mtkenner
 
 Check out [releases](https://github.com/defuncart/game_saves_backup/releases) for the latest release.
 
+In desktop mode, the application can be added to Steam Launcher as a Non-Steam game via content menu, Lutris or Heroic. Official artwork assets can be found in [assets_dev/steam](assets_dev/steam) and added via Steam launcher.
+
+## Building Locally
+
 If you wish to build from source, you will require:
 
 - Flutter >= 3.13
