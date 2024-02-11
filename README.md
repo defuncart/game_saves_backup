@@ -4,7 +4,7 @@ A linux application to backup game saves.
 
 ## About
 
-- Built for use on the steam deck (Game and Desktop mode)
+- Built for use on the Steam Deck (Game and Desktop mode)
 - Compatible with Lutris, Heroic, Steam, Emulation etc.
 - Individual game backup folder names can be customized
     - Inside prefixes, folder name defaults to prefix name
@@ -29,7 +29,7 @@ Looking for more functionality? Check out [ludusavi](https://github.com/mtkenner
 
 The latest release can be found [here](https://github.com/defuncart/game_saves_backup/releases/latest). 
 
-In desktop mode, the application can be added to Steam Launcher as a Non-Steam game via content menu, Lutris or Heroic.
+In desktop mode, the application can be added to Steam Launcher as a Non-Steam game via content menu, Lutris or Heroic. Official artwork assets can be found in [assets_dev/steam](assets_dev/steam) and added via Steam launcher.
 
 ### Building from Source
 
