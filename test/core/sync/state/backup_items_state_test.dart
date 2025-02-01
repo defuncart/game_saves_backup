@@ -18,10 +18,17 @@ void main() {
       expect(determineFolderNameForPath(path), 'HorizonChaseTurbo');
     });
 
-    test('steam save', () {
-      path = '/home/deck/.steam/steam/userdata/111111111/427820';
+    test('steam save (native)', () {
+      path = '/home/deck/.steam/steam/userdata/111111111/427820/remote';
 
       expect(determineFolderNameForPath(path), '427820');
+    });
+
+    test('steam save (proton)', () {
+      path =
+          '/home/deck/.steam/steam/steamapps/compatdata/1599600/pfx/drive_c/users/steamuser/AppData/LocalLow/It\'s Happening/PlateUp/Progress';
+
+      expect(determineFolderNameForPath(path), '1599600');
     });
 
     test('other', () {

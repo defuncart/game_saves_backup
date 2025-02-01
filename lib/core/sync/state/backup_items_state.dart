@@ -42,18 +42,25 @@ class BackupItems extends _$BackupItems {
 
 @visibleForTesting
 String determineFolderNameForPath(String path) {
+  final steamProtonRegex = RegExp(r'compatdata\/(\d+)\/pfx/drive_c');
+
+  if (steamProtonRegex.hasMatch(path)) {
+    final matches = steamProtonRegex.firstMatch(path);
+    if (matches != null && matches.groupCount >= 1 && matches.group(1) != null && matches.group(1)!.isNotEmpty) {
+      return matches.group(1)!;
+    }
+  }
+
+  final steamNativeRegex = RegExp(r'userdata\/\d+\/(\d+)/remote');
+  final matches = steamNativeRegex.firstMatch(path);
+  if (matches != null && matches.groupCount >= 1 && matches.group(1) != null && matches.group(1)!.isNotEmpty) {
+    return matches.group(1)!;
+  }
+
   final pathComponents = p.split(path);
   // prefix
   if (pathComponents.indexOf('drive_c') > 0) {
     return pathComponents.sublist(0, pathComponents.indexOf('drive_c')).last;
-  }
-  // steam save
-  else if (pathComponents.contains('userdata')) {
-    final index = pathComponents.indexOf('userdata');
-    final indexSteamId = index + 2;
-    if (index > 0 && indexSteamId < pathComponents.length) {
-      return pathComponents[indexSteamId];
-    }
   }
 
   return pathComponents.last;
