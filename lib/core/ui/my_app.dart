@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:game_saves_backup/core/l10n/app_localizations.dart';
 import 'package:game_saves_backup/core/theme/themes.dart';
 import 'package:game_saves_backup/features/home/ui/home_screen.dart';
 
