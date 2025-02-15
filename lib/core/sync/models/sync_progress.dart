@@ -5,11 +5,9 @@ class SyncStatusReady implements SyncStatus {
 }
 
 class SyncStatusProgress implements SyncStatus {
-  const SyncStatusProgress({
-    required this.count,
-    required this.total,
-  })  : assert(count >= 0 && total >= 0),
-        assert(count <= total);
+  const SyncStatusProgress({required this.count, required this.total})
+    : assert(count >= 0 && total >= 0),
+      assert(count <= total);
 
   final int count;
   final int total;
@@ -33,9 +31,7 @@ class SyncStatusProgress implements SyncStatus {
 }
 
 class SyncStatusCompleted implements SyncStatus {
-  const SyncStatusCompleted({
-    required this.itemsSynced,
-  });
+  const SyncStatusCompleted({required this.itemsSynced});
 
   final int itemsSynced;
 

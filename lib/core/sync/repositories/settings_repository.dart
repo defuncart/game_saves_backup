@@ -22,10 +22,7 @@ class HiveSyncSettingsRepository extends SyncSettingsRepository {
   set syncDirectory(String? value) => _box.put(_Keys.syncDirectory, value);
 
   @override
-  bool get syncToNewFolder => _box.get(
-        _Keys.syncToNewFolder,
-        defaultValue: _Defaults.syncToNewFolder,
-      );
+  bool get syncToNewFolder => _box.get(_Keys.syncToNewFolder, defaultValue: _Defaults.syncToNewFolder);
 
   @override
   set syncToNewFolder(bool value) => _box.put(_Keys.syncToNewFolder, value);

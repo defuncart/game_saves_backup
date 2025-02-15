@@ -7,4 +7,4 @@ fvm dart run arb_generator
 fvm flutter gen-l10n
 
 # format generated delegates
-fvm dart format . -l 120
+fvm dart format .

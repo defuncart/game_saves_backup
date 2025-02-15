@@ -16,9 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const _AutoFocusExitButton(),
-      ),
+      appBar: AppBar(leading: const _AutoFocusExitButton()),
       body: const _HomeScreenContent(),
       floatingActionButton: const _FAB(),
     );
@@ -35,17 +33,13 @@ class _AutoFocusExitButton extends ConsumerWidget {
     return switch (state) {
       SyncStatusProgress() => const SizedBox.shrink(),
       SyncStatusReady() => const _ExitButton(),
-      SyncStatusCompleted() => const _ExitButton(
-          shouldFocus: true,
-        ),
+      SyncStatusCompleted() => const _ExitButton(shouldFocus: true),
     };
   }
 }
 
 class _ExitButton extends StatelessWidget {
-  const _ExitButton({
-    this.shouldFocus = false,
-  });
+  const _ExitButton({this.shouldFocus = false});
 
   final bool shouldFocus;
 
@@ -66,9 +60,7 @@ class _HomeScreenContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final hasBackupItems = ref.watch(hasBackupItemsProvider);
 
-    return Center(
-      child: hasBackupItems ? const _HomeScreenSync() : Text(context.l10n.homeScreenNoBackupItems),
-    );
+    return Center(child: hasBackupItems ? const _HomeScreenSync() : Text(context.l10n.homeScreenNoBackupItems));
   }
 }
 
@@ -80,24 +72,18 @@ class _HomeScreenSync extends ConsumerWidget {
     final state = ref.watch(syncStatusControllerProvider);
 
     return switch (state) {
-      SyncStatusReady() => _SyncButton(
-          onSync: ref.read(syncStatusControllerProvider.notifier).sync,
-        ),
-      SyncStatusProgress() => _SyncProgress(
-          state: state,
-        ),
+      SyncStatusReady() => _SyncButton(onSync: ref.read(syncStatusControllerProvider.notifier).sync),
+      SyncStatusProgress() => _SyncProgress(state: state),
       SyncStatusCompleted() => _SyncCompleted(
-          itemsSynced: state.itemsSynced,
-          onDone: ref.read(syncStatusControllerProvider.notifier).reset,
-        ),
+        itemsSynced: state.itemsSynced,
+        onDone: ref.read(syncStatusControllerProvider.notifier).reset,
+      ),
     };
   }
 }
 
 class _SyncButton extends ConsumerWidget {
-  const _SyncButton({
-    required this.onSync,
-  });
+  const _SyncButton({required this.onSync});
 
   final VoidCallback onSync;
 
@@ -110,18 +96,14 @@ class _SyncButton extends ConsumerWidget {
         focusNode: FocusNode()..requestFocus(),
         onPressed: onSync,
         icon: const Icon(Icons.sync),
-        label: Text(
-          context.l10n.homeScreenSyncReady,
-        ),
+        label: Text(context.l10n.homeScreenSyncReady),
       ),
     );
   }
 }
 
 class _SyncProgress extends StatelessWidget {
-  const _SyncProgress({
-    required this.state,
-  });
+  const _SyncProgress({required this.state});
 
   final SyncStatusProgress state;
 
@@ -131,26 +113,17 @@ class _SyncProgress extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: 200,
-          ),
-          child: LinearProgressIndicator(
-            value: state.progress,
-          ),
+          constraints: const BoxConstraints(maxWidth: 200),
+          child: LinearProgressIndicator(value: state.progress),
         ),
-        Text(
-          context.l10n.homeScreenSyncProgress(state.count, state.total),
-        ),
+        Text(context.l10n.homeScreenSyncProgress(state.count, state.total)),
       ].intersperse(const SizedBox(height: 8)),
     );
   }
 }
 
 class _SyncCompleted extends StatelessWidget {
-  const _SyncCompleted({
-    required this.itemsSynced,
-    required this.onDone,
-  });
+  const _SyncCompleted({required this.itemsSynced, required this.onDone});
 
   final int itemsSynced;
   final VoidCallback onDone;
@@ -160,19 +133,9 @@ class _SyncCompleted extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          '🎉',
-          style: context.textTheme.displayLarge,
-        ),
-        Text(
-          context.l10n.homeScreenSyncCompleted(itemsSynced),
-        ),
-        TextButton(
-          onPressed: onDone,
-          child: Text(
-            context.l10n.homeScreenSyncCompletedDone,
-          ),
-        ),
+        Text('🎉', style: context.textTheme.displayLarge),
+        Text(context.l10n.homeScreenSyncCompleted(itemsSynced)),
+        TextButton(onPressed: onDone, child: Text(context.l10n.homeScreenSyncCompletedDone)),
       ].intersperse(const SizedBox(height: 8)),
     );
   }
@@ -188,13 +151,9 @@ class _FAB extends ConsumerWidget {
     return switch (state) {
       SyncStatusProgress() => const SizedBox.shrink(),
       _ => FloatingActionButton.small(
-          child: const Icon(Icons.settings),
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const ListScreen(),
-            ),
-          ),
-        ),
+        child: const Icon(Icons.settings),
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ListScreen())),
+      ),
     };
   }
 }

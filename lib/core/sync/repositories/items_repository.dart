@@ -12,10 +12,7 @@ class HiveItemsRepository extends ItemsRepository {
   static const _name = 'items';
 
   HiveItemsRepository() {
-    Hive.registerAdapter<BackupItem>(
-      'BackupItem',
-      (json) => BackupItem.fromJson(json),
-    );
+    Hive.registerAdapter<BackupItem>('BackupItem', (json) => BackupItem.fromJson(json));
     _box = Hive.box<BackupItem>(name: _name);
   }
 

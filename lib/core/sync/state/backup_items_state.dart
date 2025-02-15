@@ -23,23 +23,15 @@ class BackupItems extends _$BackupItems {
   void add({required String path}) {
     final id = ref.read(_uuidRepositoryProvider).generate();
     final pathComponents = p.split(path);
-    final folderName = pathComponents.indexOf('drive_c') > 0
-        ? pathComponents.sublist(0, pathComponents.indexOf('drive_c')).last
-        : pathComponents.last;
-    ref.read(_itemsRepositoryProvider).addItem(
-          BackupItem(
-            id: id,
-            path: path,
-            folderName: folderName,
-          ),
-        );
+    final folderName =
+        pathComponents.indexOf('drive_c') > 0
+            ? pathComponents.sublist(0, pathComponents.indexOf('drive_c')).last
+            : pathComponents.last;
+    ref.read(_itemsRepositoryProvider).addItem(BackupItem(id: id, path: path, folderName: folderName));
     state = _getAllItems();
   }
 
-  void updateName({
-    required BackupItem item,
-    required String folderName,
-  }) {
+  void updateName({required BackupItem item, required String folderName}) {
     final newItem = item.updateFolderName(folderName);
     ref.read(_itemsRepositoryProvider).addItem(newItem);
     state = _getAllItems();
@@ -55,9 +47,5 @@ class BackupItems extends _$BackupItems {
 bool hasBackupItems(Ref ref) => ref.watch(backupItemsProvider).isNotEmpty;
 
 extension on BackupItem {
-  BackupItem updateFolderName(String folderName) => BackupItem(
-        id: id,
-        folderName: folderName,
-        path: path,
-      );
+  BackupItem updateFolderName(String folderName) => BackupItem(id: id, folderName: folderName, path: path);
 }
