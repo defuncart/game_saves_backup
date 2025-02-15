@@ -69,21 +69,13 @@ class BackupItemExistsFamily extends Family<AsyncValue<bool>> {
   const BackupItemExistsFamily();
 
   /// See also [backupItemExists].
-  BackupItemExistsProvider call({
-    required String path,
-  }) {
-    return BackupItemExistsProvider(
-      path: path,
-    );
+  BackupItemExistsProvider call({required String path}) {
+    return BackupItemExistsProvider(path: path);
   }
 
   @override
-  BackupItemExistsProvider getProviderOverride(
-    covariant BackupItemExistsProvider provider,
-  ) {
-    return call(
-      path: provider.path,
-    );
+  BackupItemExistsProvider getProviderOverride(covariant BackupItemExistsProvider provider) {
+    return call(path: provider.path);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -103,20 +95,16 @@ class BackupItemExistsFamily extends Family<AsyncValue<bool>> {
 /// See also [backupItemExists].
 class BackupItemExistsProvider extends AutoDisposeFutureProvider<bool> {
   /// See also [backupItemExists].
-  BackupItemExistsProvider({
-    required String path,
-  }) : this._internal(
-          (ref) => backupItemExists(
-            ref as BackupItemExistsRef,
-            path: path,
-          ),
-          from: backupItemExistsProvider,
-          name: r'backupItemExistsProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$backupItemExistsHash,
-          dependencies: BackupItemExistsFamily._dependencies,
-          allTransitiveDependencies: BackupItemExistsFamily._allTransitiveDependencies,
-          path: path,
-        );
+  BackupItemExistsProvider({required String path})
+    : this._internal(
+        (ref) => backupItemExists(ref as BackupItemExistsRef, path: path),
+        from: backupItemExistsProvider,
+        name: r'backupItemExistsProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$backupItemExistsHash,
+        dependencies: BackupItemExistsFamily._dependencies,
+        allTransitiveDependencies: BackupItemExistsFamily._allTransitiveDependencies,
+        path: path,
+      );
 
   BackupItemExistsProvider._internal(
     super._createNotifier, {
@@ -131,9 +119,7 @@ class BackupItemExistsProvider extends AutoDisposeFutureProvider<bool> {
   final String path;
 
   @override
-  Override overrideWith(
-    FutureOr<bool> Function(BackupItemExistsRef provider) create,
-  ) {
+  Override overrideWith(FutureOr<bool> Function(BackupItemExistsRef provider) create) {
     return ProviderOverride(
       origin: this,
       override: BackupItemExistsProvider._internal(
@@ -200,12 +186,13 @@ String _$syncCreateNewFoldersControllerHash() => r'246c74ce729476bf53750725895ab
 @ProviderFor(SyncCreateNewFoldersController)
 final syncCreateNewFoldersControllerProvider =
     AutoDisposeNotifierProvider<SyncCreateNewFoldersController, bool>.internal(
-  SyncCreateNewFoldersController.new,
-  name: r'syncCreateNewFoldersControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$syncCreateNewFoldersControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      SyncCreateNewFoldersController.new,
+      name: r'syncCreateNewFoldersControllerProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product') ? null : _$syncCreateNewFoldersControllerHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$SyncCreateNewFoldersController = AutoDisposeNotifier<bool>;
 String _$syncStatusControllerHash() => r'9d378bd6cf856653cb07d075461cd94c53a58100';

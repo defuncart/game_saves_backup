@@ -25,9 +25,9 @@ class SyncDirectoryController extends _$SyncDirectoryController {
   Future<String> build() async => ref.read(_syncSettingsRepositoryProvider).syncDirectory ?? await _defaultDirectory;
 
   Future<String> get _defaultDirectory => switch (defaultTargetPlatform) {
-        TargetPlatform.linux => getDownloadsDirectory().then((value) => value!.path),
-        _ => getApplicationSupportDirectory().then((value) => value.path),
-      };
+    TargetPlatform.linux => getDownloadsDirectory().then((value) => value!.path),
+    _ => getApplicationSupportDirectory().then((value) => value.path),
+  };
 
   Future<void> setPath(String path) async {
     ref.read(_syncSettingsRepositoryProvider).syncDirectory = path;
@@ -66,10 +66,7 @@ class SyncStatusController extends _$SyncStatusController {
 
     int foldersSynced = 0;
     for (final item in items) {
-      state = SyncStatusProgress(
-        count: foldersSynced,
-        total: items.length,
-      );
+      state = SyncStatusProgress(count: foldersSynced, total: items.length);
       final from = item.path;
       final to = p.join(syncPath, item.folderName);
       log('Syncing $foldersSynced/${items.length}: $from to $to');
@@ -78,9 +75,7 @@ class SyncStatusController extends _$SyncStatusController {
       foldersSynced++;
     }
 
-    state = SyncStatusCompleted(
-      itemsSynced: items.length,
-    );
+    state = SyncStatusCompleted(itemsSynced: items.length);
     log('Sync completed');
   }
 
@@ -88,8 +83,4 @@ class SyncStatusController extends _$SyncStatusController {
 }
 
 @riverpod
-Future<bool> backupItemExists(
-  Ref ref, {
-  required String path,
-}) =>
-    ref.read(_filesRepositoryProvider).dirExists(path);
+Future<bool> backupItemExists(Ref ref, {required String path}) => ref.read(_filesRepositoryProvider).dirExists(path);

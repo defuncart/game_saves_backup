@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.0.3+1
 
 environment:
-  sdk: '>=3.6.0 <4.0.0'
-  flutter: '>=3.27.0 <4.0.0'
+  sdk: ^3.7.0
+  flutter: ^3.29.0
 
 dependencies:
   flutter:
@@ -18,7 +18,7 @@ dependencies:
   file_selector: ^1.0.3
   url_launcher: ^6.3.1
   native_context_menu: ^0.2.2+5
-  uuid: ^4.5.0
+  uuid:
   hive: ^4.0.0-dev.2
   isar_flutter_libs: ^4.0.0-dev.14
   path_provider:
@@ -29,7 +29,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  arb_generator: ^0.0.4
+  arb_generator:
   build_runner:
   riverpod_generator: ^2.6.3
   custom_lint:
