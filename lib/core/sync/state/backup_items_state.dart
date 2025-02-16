@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_saves_backup/core/sync/models/backup_item.dart';
 import 'package:game_saves_backup/core/sync/repositories/items_repository.dart';
@@ -22,11 +23,7 @@ class BackupItems extends _$BackupItems {
 
   void add({required String path}) {
     final id = ref.read(_uuidRepositoryProvider).generate();
-    final pathComponents = p.split(path);
-    final folderName =
-        pathComponents.indexOf('drive_c') > 0
-            ? pathComponents.sublist(0, pathComponents.indexOf('drive_c')).last
-            : pathComponents.last;
+    final folderName = determineFolderNameForPath(path);
     ref.read(_itemsRepositoryProvider).addItem(BackupItem(id: id, path: path, folderName: folderName));
     state = _getAllItems();
   }
@@ -41,6 +38,32 @@ class BackupItems extends _$BackupItems {
     ref.read(_itemsRepositoryProvider).removeItem(id);
     state = _getAllItems();
   }
+}
+
+@visibleForTesting
+String determineFolderNameForPath(String path) {
+  final steamProtonRegex = RegExp(r'compatdata\/(\d+)\/pfx/drive_c');
+
+  if (steamProtonRegex.hasMatch(path)) {
+    final matches = steamProtonRegex.firstMatch(path);
+    if (matches != null && matches.groupCount >= 1 && matches.group(1) != null && matches.group(1)!.isNotEmpty) {
+      return matches.group(1)!;
+    }
+  }
+
+  final steamNativeRegex = RegExp(r'userdata\/\d+\/(\d+)/remote');
+  final matches = steamNativeRegex.firstMatch(path);
+  if (matches != null && matches.groupCount >= 1 && matches.group(1) != null && matches.group(1)!.isNotEmpty) {
+    return matches.group(1)!;
+  }
+
+  final pathComponents = p.split(path);
+  // prefix
+  if (pathComponents.indexOf('drive_c') > 0) {
+    return pathComponents.sublist(0, pathComponents.indexOf('drive_c')).last;
+  }
+
+  return pathComponents.last;
 }
 
 @riverpod
