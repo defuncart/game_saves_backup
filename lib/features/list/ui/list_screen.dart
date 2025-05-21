@@ -18,7 +18,10 @@ class ListScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.listScreenTitle),
-        actions: const [_SyncCreateNewFoldersAction(), _SyncDirAction()],
+        actions: const [
+          _SyncCreateNewFoldersAction(),
+          _SyncDirAction(),
+        ],
       ),
       body: const _ListScreenContent(),
       floatingActionButton: FloatingActionButton.large(
@@ -45,20 +48,19 @@ class _SyncDirAction extends ConsumerWidget {
     final syncDirectory = ref.watch(syncDirectoryControllerProvider);
 
     return syncDirectory.map(
-      data:
-          (data) => IconButton(
-            tooltip: context.l10n.listScreenActionTooltipSyncDirectory,
-            icon: const Icon(Icons.backup),
-            onPressed: () async {
-              final directoryPath = await getDirectoryPath(
-                initialDirectory: data.value,
-                confirmButtonText: context.l10n.listScreenNewBackupItemSelectText,
-              );
-              if (directoryPath != null) {
-                ref.read(syncDirectoryControllerProvider.notifier).setPath(directoryPath);
-              }
-            },
-          ),
+      data: (data) => IconButton(
+        tooltip: context.l10n.listScreenActionTooltipSyncDirectory,
+        icon: const Icon(Icons.backup),
+        onPressed: () async {
+          final directoryPath = await getDirectoryPath(
+            initialDirectory: data.value,
+            confirmButtonText: context.l10n.listScreenNewBackupItemSelectText,
+          );
+          if (directoryPath != null) {
+            ref.read(syncDirectoryControllerProvider.notifier).setPath(directoryPath);
+          }
+        },
+      ),
       error: (_) => const SizedBox.shrink(),
       loading: (_) => const SizedBox.shrink(),
     );
@@ -73,14 +75,12 @@ class _SyncCreateNewFoldersAction extends ConsumerWidget {
     final createNewFolders = ref.watch(syncCreateNewFoldersControllerProvider);
 
     return IconButton(
-      tooltip:
-          createNewFolders
-              ? context.l10n.listScreenActionTooltipCreateNewFoldersEnabled
-              : context.l10n.listScreenActionTooltipCreateNewFoldersDisabled,
-      icon:
-          createNewFolders
-              ? Icon(Icons.create_new_folder, color: context.colorScheme.primary)
-              : const Icon(Icons.create_new_folder_outlined),
+      tooltip: createNewFolders
+          ? context.l10n.listScreenActionTooltipCreateNewFoldersEnabled
+          : context.l10n.listScreenActionTooltipCreateNewFoldersDisabled,
+      icon: createNewFolders
+          ? Icon(Icons.create_new_folder, color: context.colorScheme.primary)
+          : const Icon(Icons.create_new_folder_outlined),
       onPressed: ref.read(syncCreateNewFoldersControllerProvider.notifier).toggle,
     );
   }
@@ -94,10 +94,11 @@ class _ListScreenContent extends ConsumerWidget {
     final backupItems = ref.watch(backupItemsProvider);
 
     return Center(
-      child:
-          backupItems.isEmpty
-              ? Text(context.l10n.listScreenNoBackupItems)
-              : ListView(children: backupItems.map((item) => _BackupItemTile(item: item)).toList()),
+      child: backupItems.isEmpty
+          ? Text(context.l10n.listScreenNoBackupItems)
+          : ListView(
+              children: backupItems.map((item) => _BackupItemTile(item: item)).toList(),
+            ),
     );
   }
 }
@@ -122,19 +123,16 @@ class __BackupItemTileState extends ConsumerState<_BackupItemTile> {
   void initState() {
     super.initState();
 
-    _controller =
-        TextEditingController()
-          ..text = _item.folderName
-          ..addListener(() {
-            final text = _controller.text.trim();
-            if (_item.folderName != text && !_hasUnsavedChanges) {
-              setState(() => _hasUnsavedChanges = true);
-              // _focusNode.requestFocus();
-            } else if (_item.folderName == text && _hasUnsavedChanges) {
-              setState(() => _hasUnsavedChanges = false);
-              // _focusNode.requestFocus();
-            }
-          });
+    _controller = TextEditingController()
+      ..text = _item.folderName
+      ..addListener(() {
+        final text = _controller.text.trim();
+        if (_item.folderName != text && !_hasUnsavedChanges) {
+          setState(() => _hasUnsavedChanges = true);
+        } else if (_item.folderName == text && _hasUnsavedChanges) {
+          setState(() => _hasUnsavedChanges = false);
+        }
+      });
     _focusNode = FocusNode();
   }
 
@@ -183,7 +181,10 @@ class __BackupItemTileState extends ConsumerState<_BackupItemTile> {
       ],
       child: Dismissible(
         key: Key(_item.id),
-        background: const ColoredBox(color: Colors.red, child: Icon(Icons.delete, color: Colors.white)),
+        background: const ColoredBox(
+          color: Colors.red,
+          child: Icon(Icons.delete, color: Colors.white),
+        ),
         onDismissed: (_) => onRemove(),
         child: Opacity(
           opacity: backupItemExists ? 1 : 0.6,

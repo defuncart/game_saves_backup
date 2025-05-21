@@ -188,8 +188,9 @@ final syncCreateNewFoldersControllerProvider =
     AutoDisposeNotifierProvider<SyncCreateNewFoldersController, bool>.internal(
       SyncCreateNewFoldersController.new,
       name: r'syncCreateNewFoldersControllerProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product') ? null : _$syncCreateNewFoldersControllerHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$syncCreateNewFoldersControllerHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
