@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:game_saves_backup/core/extensions/iterable_widget_extension.dart';
 import 'package:game_saves_backup/core/extensions/theme_extensions.dart';
 import 'package:game_saves_backup/core/l10n/l10n_extension.dart';
 import 'package:game_saves_backup/core/sync/models/sync_progress.dart';
@@ -60,7 +59,9 @@ class _HomeScreenContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final hasBackupItems = ref.watch(hasBackupItemsProvider);
 
-    return Center(child: hasBackupItems ? const _HomeScreenSync() : Text(context.l10n.homeScreenNoBackupItems));
+    return Center(
+      child: hasBackupItems ? const _HomeScreenSync() : Text(context.l10n.homeScreenNoBackupItems),
+    );
   }
 }
 
@@ -111,13 +112,14 @@ class _SyncProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      spacing: 8,
       children: [
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 200),
           child: LinearProgressIndicator(value: state.progress),
         ),
         Text(context.l10n.homeScreenSyncProgress(state.count, state.total)),
-      ].intersperse(const SizedBox(height: 8)),
+      ],
     );
   }
 }
@@ -132,11 +134,15 @@ class _SyncCompleted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      spacing: 8,
       children: [
         Text('🎉', style: context.textTheme.displayLarge),
         Text(context.l10n.homeScreenSyncCompleted(itemsSynced)),
-        TextButton(onPressed: onDone, child: Text(context.l10n.homeScreenSyncCompletedDone)),
-      ].intersperse(const SizedBox(height: 8)),
+        TextButton(
+          onPressed: onDone,
+          child: Text(context.l10n.homeScreenSyncCompletedDone),
+        ),
+      ],
     );
   }
 }
@@ -152,7 +158,11 @@ class _FAB extends ConsumerWidget {
       SyncStatusProgress() => const SizedBox.shrink(),
       _ => FloatingActionButton.small(
         child: const Icon(Icons.settings),
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ListScreen())),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const ListScreen(),
+          ),
+        ),
       ),
     };
   }
