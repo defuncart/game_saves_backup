@@ -33,15 +33,7 @@ In desktop mode, the application can be added to Steam Launcher as a Non-Steam g
 
 ### Building from Source
 
-If you wish to build from source, you will require:
-
-- Flutter >= 3.16
-- Dart >= 3.2
-- linux:
-    - clang
-    - ninja-build
-    - libgtk-3-dev
-    - libblkid-dev
+If you wish to build from source, you will require Flutter & Dart versions as specified in [pubspec.yaml](pubspec.yaml) and native linux dependencies such as clang and ninja-build. See [CD pipeline](.github/workflows/cd_main.yml) for more info.
 
 The application has not been tested on windows, however it *should™* theoretically work. To generate relevant flutter project files, firstly run `fvm flutter create . --platforms=macos,windows`.
 
