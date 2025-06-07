@@ -34,8 +34,8 @@ packages:
     dependency: "direct dev"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "865d22572f2ce5386612529fa863aa8ea097cacd"
+      ref: main
+      resolved-ref: d993f6eec053375b8e1594cdde7f4dd2b81a65af
       url: "https://github.com/defuncart/app_store_screenshots"
     source: git
     version: "0.0.1"
