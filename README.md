@@ -15,9 +15,9 @@ A linux application to backup game saves.
 
 <table>
 <tr>
-<td><img src="docs/screenshot1.png"></td>
-<td><img src="docs/screenshot2.png"></td>
-<td><img src="docs/screenshot3.png"></td>
+<td><img src="docs/screenshots/screenshot1.png"></td>
+<td><img src="docs/screenshots/screenshot2.png"></td>
+<td><img src="docs/screenshots/screenshot3.png"></td>
 </tr>
 </table>
 
@@ -29,7 +29,7 @@ Looking for more functionality? Check out [ludusavi](https://github.com/mtkenner
 
 The latest release can be found [here](https://github.com/defuncart/game_saves_backup/releases/latest). 
 
-In desktop mode, the application can be added to Steam Launcher as a Non-Steam game via content menu, Lutris or Heroic. Official artwork assets can be found in [assets_dev/steam](assets_dev/steam) and added via Steam launcher.
+In desktop mode, the application can be added to Steam Launcher as a Non-Steam game via content menu, Lutris or Heroic. Official artwork assets can be found in [docs/steam_assets](docs/steam_assets) and added via Steam launcher.
 
 ### Building from Source
 
