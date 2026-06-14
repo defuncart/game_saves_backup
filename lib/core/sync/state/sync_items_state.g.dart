@@ -6,29 +6,36 @@ part of 'sync_items_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$syncSettingsRepositoryHash() => r'8f77cb3ac719fde462700c2ad41587dcc63e47ce';
+String _$syncSettingsRepositoryHash() =>
+    r'68010034b43666339460475ce1b164a9f0a3c65f';
 
 /// See also [_syncSettingsRepository].
 @ProviderFor(_syncSettingsRepository)
-final _syncSettingsRepositoryProvider = AutoDisposeProvider<SyncSettingsRepository>.internal(
+final _syncSettingsRepositoryProvider =
+    AutoDisposeProvider<SyncSettingsRepository>.internal(
   _syncSettingsRepository,
   name: r'_syncSettingsRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$syncSettingsRepositoryHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$syncSettingsRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef _SyncSettingsRepositoryRef = AutoDisposeProviderRef<SyncSettingsRepository>;
-String _$filesRepositoryHash() => r'5324da4beee0847fbeb60560d11e8a83092d516d';
+typedef _SyncSettingsRepositoryRef
+    = AutoDisposeProviderRef<SyncSettingsRepository>;
+String _$filesRepositoryHash() => r'56beda946e50e4e4dfdef690c361ede6737ebd45';
 
 /// See also [_filesRepository].
 @ProviderFor(_filesRepository)
 final _filesRepositoryProvider = AutoDisposeProvider<FilesRepository>.internal(
   _filesRepository,
   name: r'_filesRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$filesRepositoryHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filesRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -36,7 +43,7 @@ final _filesRepositoryProvider = AutoDisposeProvider<FilesRepository>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef _FilesRepositoryRef = AutoDisposeProviderRef<FilesRepository>;
-String _$backupItemExistsHash() => r'76658db805b09e5c73fdc9301ef4093f1fd1e01d';
+String _$backupItemExistsHash() => r'6f5d1db4a689faae58f1590d8aac28085db477ce';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -69,13 +76,21 @@ class BackupItemExistsFamily extends Family<AsyncValue<bool>> {
   const BackupItemExistsFamily();
 
   /// See also [backupItemExists].
-  BackupItemExistsProvider call({required String path}) {
-    return BackupItemExistsProvider(path: path);
+  BackupItemExistsProvider call({
+    required String path,
+  }) {
+    return BackupItemExistsProvider(
+      path: path,
+    );
   }
 
   @override
-  BackupItemExistsProvider getProviderOverride(covariant BackupItemExistsProvider provider) {
-    return call(path: provider.path);
+  BackupItemExistsProvider getProviderOverride(
+    covariant BackupItemExistsProvider provider,
+  ) {
+    return call(
+      path: provider.path,
+    );
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -86,7 +101,8 @@ class BackupItemExistsFamily extends Family<AsyncValue<bool>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'backupItemExistsProvider';
@@ -95,16 +111,24 @@ class BackupItemExistsFamily extends Family<AsyncValue<bool>> {
 /// See also [backupItemExists].
 class BackupItemExistsProvider extends AutoDisposeFutureProvider<bool> {
   /// See also [backupItemExists].
-  BackupItemExistsProvider({required String path})
-    : this._internal(
-        (ref) => backupItemExists(ref as BackupItemExistsRef, path: path),
-        from: backupItemExistsProvider,
-        name: r'backupItemExistsProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$backupItemExistsHash,
-        dependencies: BackupItemExistsFamily._dependencies,
-        allTransitiveDependencies: BackupItemExistsFamily._allTransitiveDependencies,
-        path: path,
-      );
+  BackupItemExistsProvider({
+    required String path,
+  }) : this._internal(
+          (ref) => backupItemExists(
+            ref as BackupItemExistsRef,
+            path: path,
+          ),
+          from: backupItemExistsProvider,
+          name: r'backupItemExistsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$backupItemExistsHash,
+          dependencies: BackupItemExistsFamily._dependencies,
+          allTransitiveDependencies:
+              BackupItemExistsFamily._allTransitiveDependencies,
+          path: path,
+        );
 
   BackupItemExistsProvider._internal(
     super._createNotifier, {
@@ -119,7 +143,9 @@ class BackupItemExistsProvider extends AutoDisposeFutureProvider<bool> {
   final String path;
 
   @override
-  Override overrideWith(FutureOr<bool> Function(BackupItemExistsRef provider) create) {
+  Override overrideWith(
+    FutureOr<bool> Function(BackupItemExistsRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: BackupItemExistsProvider._internal(
@@ -160,50 +186,60 @@ mixin BackupItemExistsRef on AutoDisposeFutureProviderRef<bool> {
   String get path;
 }
 
-class _BackupItemExistsProviderElement extends AutoDisposeFutureProviderElement<bool> with BackupItemExistsRef {
+class _BackupItemExistsProviderElement
+    extends AutoDisposeFutureProviderElement<bool> with BackupItemExistsRef {
   _BackupItemExistsProviderElement(super.provider);
 
   @override
   String get path => (origin as BackupItemExistsProvider).path;
 }
 
-String _$syncDirectoryControllerHash() => r'933f5953a47628458c1679b85526638207880733';
+String _$syncDirectoryControllerHash() =>
+    r'933f5953a47628458c1679b85526638207880733';
 
 /// See also [SyncDirectoryController].
 @ProviderFor(SyncDirectoryController)
-final syncDirectoryControllerProvider = AutoDisposeAsyncNotifierProvider<SyncDirectoryController, String>.internal(
+final syncDirectoryControllerProvider =
+    AutoDisposeAsyncNotifierProvider<SyncDirectoryController, String>.internal(
   SyncDirectoryController.new,
   name: r'syncDirectoryControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$syncDirectoryControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$syncDirectoryControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 typedef _$SyncDirectoryController = AutoDisposeAsyncNotifier<String>;
-String _$syncCreateNewFoldersControllerHash() => r'246c74ce729476bf53750725895abc793efdda9c';
+String _$syncCreateNewFoldersControllerHash() =>
+    r'246c74ce729476bf53750725895abc793efdda9c';
 
 /// See also [SyncCreateNewFoldersController].
 @ProviderFor(SyncCreateNewFoldersController)
 final syncCreateNewFoldersControllerProvider =
     AutoDisposeNotifierProvider<SyncCreateNewFoldersController, bool>.internal(
-      SyncCreateNewFoldersController.new,
-      name: r'syncCreateNewFoldersControllerProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$syncCreateNewFoldersControllerHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  SyncCreateNewFoldersController.new,
+  name: r'syncCreateNewFoldersControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$syncCreateNewFoldersControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$SyncCreateNewFoldersController = AutoDisposeNotifier<bool>;
-String _$syncStatusControllerHash() => r'9d378bd6cf856653cb07d075461cd94c53a58100';
+String _$syncStatusControllerHash() =>
+    r'9d378bd6cf856653cb07d075461cd94c53a58100';
 
 /// See also [SyncStatusController].
 @ProviderFor(SyncStatusController)
-final syncStatusControllerProvider = AutoDisposeNotifierProvider<SyncStatusController, SyncStatus>.internal(
+final syncStatusControllerProvider =
+    AutoDisposeNotifierProvider<SyncStatusController, SyncStatus>.internal(
   SyncStatusController.new,
   name: r'syncStatusControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$syncStatusControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$syncStatusControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

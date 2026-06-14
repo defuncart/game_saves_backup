@@ -1,6 +1,11 @@
 import 'package:game_saves_backup/core/sync/models/backup_item.dart';
-import 'package:hive/hive.dart';
+import 'package:game_saves_backup/core/sync/repositories/hive_registrar.g.dart';
+import 'package:hive_ce/hive.dart';
+import 'package:hive_ce/hive_ce.dart';
 
+part 'items_repository.g.dart';
+
+@GenerateAdapters([AdapterSpec<BackupItem>()])
 abstract class ItemsRepository {
   Iterable<BackupItem> getAllItems();
   void addItem(BackupItem item);
@@ -12,12 +17,14 @@ class HiveItemsRepository extends ItemsRepository {
   static const _name = 'items';
 
   HiveItemsRepository() {
-    Hive.registerAdapter<BackupItem>('BackupItem', (json) => BackupItem.fromJson(json));
-    _box = Hive.box<BackupItem>(name: _name);
+    Hive.registerAdapters();
+    _box = Hive.box<BackupItem>(_name);
   }
 
+  static Future<void> init() => Hive.openBox<BackupItem>(_name);
+
   @override
-  Iterable<BackupItem> getAllItems() => _box.getAll(_box.keys).whereType<BackupItem>();
+  Iterable<BackupItem> getAllItems() => _box.values;
 
   @override
   void addItem(BackupItem item) => _box.put(item.id, item);
