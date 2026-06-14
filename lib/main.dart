@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:developer' show log;
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_saves_backup/core/sync/repositories/items_repository.dart';
 import 'package:game_saves_backup/core/ui/my_app.dart';
 import 'package:hive/hive.dart';
 import 'package:path/path.dart' as p;
@@ -18,6 +20,11 @@ void main() async {
   }
   Hive.defaultDirectory = defaultDirectory;
   log('Hive.defaultDirectory: ${Hive.defaultDirectory}');
+
+  final itemsRepo = HiveItemsRepository();
+  final items = itemsRepo.getAllItems();
+  final file = File(p.join(defaultDirectory, 'export.json'));
+  await file.writeAsString(jsonEncode(items.map((e) => e.toJson()).toList()));
 
   runApp(const ProviderScope(child: MyApp()));
 }
