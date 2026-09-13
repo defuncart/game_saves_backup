@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_saves_backup/core/sync/migration/isar_json_hive_import_migration.dart';
 import 'package:game_saves_backup/core/sync/repositories/items_repository.dart';
 import 'package:game_saves_backup/core/sync/repositories/settings_repository.dart';
 import 'package:game_saves_backup/core/ui/my_app.dart';
@@ -22,6 +23,8 @@ void main() async {
   log('Hive.defaultDirectory: $defaultDirectory');
   await HiveItemsRepository.init();
   await HiveSyncSettingsRepository.init();
+
+  await isarJsonHiveImportMigration(defaultDirectory);
 
   runApp(const ProviderScope(child: MyApp()));
 }

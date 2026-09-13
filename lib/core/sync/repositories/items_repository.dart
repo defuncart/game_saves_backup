@@ -17,11 +17,13 @@ class HiveItemsRepository extends ItemsRepository {
   static const _name = 'items';
 
   HiveItemsRepository() {
-    Hive.registerAdapters();
     _box = Hive.box<BackupItem>(_name);
   }
 
-  static Future<void> init() => Hive.openBox<BackupItem>(_name);
+  static Future<void> init() async {
+    Hive.registerAdapters();
+    await Hive.openBox<BackupItem>(_name);
+  }
 
   @override
   Iterable<BackupItem> getAllItems() => _box.values;
