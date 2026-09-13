@@ -13,5 +13,3 @@ types:
         index: 1
       folderName:
         index: 2
-      createdAt:
-        index: 3

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:clock/clock.dart';
 import 'package:game_saves_backup/core/sync/models/backup_item.dart';
 import 'package:game_saves_backup/core/sync/repositories/items_repository.dart';
 import 'package:path/path.dart' as p;
@@ -18,15 +17,15 @@ Future<void> isarJsonHiveImportMigration(String defaultDirectory) async {
 
         // assumed already initialized
         final repo = HiveItemsRepository();
-        for (final (index, item) in items.indexed) {
-          // original models did not have createdAt - derive a value using original sorting
-          final effectiveItem = BackupItem(
-            id: item.id,
-            path: item.path,
-            folderName: item.folderName,
-            createdAt: clock.now().add(Duration(seconds: index)),
-          );
-          repo.addItem(effectiveItem);
+        if (repo.getAllItems().isEmpty) {
+          for (final (index, item) in items.indexed) {
+            final effectiveItem = BackupItem(
+              id: index.toString(), // use as new id
+              path: item.path,
+              folderName: item.folderName,
+            );
+            repo.addItem(effectiveItem);
+          }
         }
       } catch (_) {}
     }

@@ -10,9 +10,3 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(BackupItemAdapter());
   }
 }
-
-extension IsolatedHiveRegistrar on IsolatedHiveInterface {
-  void registerAdapters() {
-    registerAdapter(BackupItemAdapter());
-  }
-}

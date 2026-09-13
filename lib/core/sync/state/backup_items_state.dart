@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_saves_backup/core/sync/models/backup_item.dart';
 import 'package:game_saves_backup/core/sync/repositories/items_repository.dart';
-import 'package:game_saves_backup/core/sync/repositories/uuid_repository.dart';
 import 'package:path/path.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,9 +11,6 @@ part 'backup_items_state.g.dart';
 ItemsRepository _itemsRepository(Ref ref) => HiveItemsRepository();
 
 @riverpod
-UUIDRepository _uuidRepository(Ref ref) => UUIDRepositoryImpl();
-
-@riverpod
 class BackupItems extends _$BackupItems {
   List<BackupItem> _getAllItems() => ref.read(_itemsRepositoryProvider).getAllItems().toList();
 
@@ -22,9 +18,17 @@ class BackupItems extends _$BackupItems {
   List<BackupItem> build() => _getAllItems();
 
   void add({required String path}) {
-    final id = ref.read(_uuidRepositoryProvider).generate();
     final folderName = determineFolderNameForPath(path);
-    ref.read(_itemsRepositoryProvider).addItem(BackupItem(id: id, path: path, folderName: folderName));
+    ref
+        .read(_itemsRepositoryProvider)
+        .addItem(
+          BackupItem(
+            // increment id index
+            id: state.length.toString(),
+            path: path,
+            folderName: folderName,
+          ),
+        );
     state = _getAllItems();
   }
 
@@ -70,6 +74,5 @@ String determineFolderNameForPath(String path) {
 bool hasBackupItems(Ref ref) => ref.watch(backupItemsProvider).isNotEmpty;
 
 extension on BackupItem {
-  BackupItem updateFolderName(String folderName) =>
-      BackupItem(id: id, folderName: folderName, path: path, createdAt: createdAt);
+  BackupItem updateFolderName(String folderName) => BackupItem(id: id, folderName: folderName, path: path);
 }

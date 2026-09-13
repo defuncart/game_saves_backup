@@ -21,21 +21,6 @@ final _itemsRepositoryProvider = AutoDisposeProvider<ItemsRepository>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef _ItemsRepositoryRef = AutoDisposeProviderRef<ItemsRepository>;
-String _$uuidRepositoryHash() => r'ed211644c416b7ac85b6494d4bcc8a8c9ecaa8c8';
-
-/// See also [_uuidRepository].
-@ProviderFor(_uuidRepository)
-final _uuidRepositoryProvider = AutoDisposeProvider<UUIDRepository>.internal(
-  _uuidRepository,
-  name: r'_uuidRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$uuidRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef _UuidRepositoryRef = AutoDisposeProviderRef<UUIDRepository>;
 String _$hasBackupItemsHash() => r'11f9125c509859fee975c936eb6b913d8d716027';
 
 /// See also [hasBackupItems].
@@ -51,7 +36,7 @@ final hasBackupItemsProvider = AutoDisposeProvider<bool>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef HasBackupItemsRef = AutoDisposeProviderRef<bool>;
-String _$backupItemsHash() => r'd61df212941328b6e729a69f1f7390156aa4e8e7';
+String _$backupItemsHash() => r'7991abf05349e0ae2d0b7d2a15a4ba431e7c11e1';
 
 /// See also [BackupItems].
 @ProviderFor(BackupItems)
