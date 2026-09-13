@@ -23,8 +23,8 @@ class BackupItems extends _$BackupItems {
         .read(_itemsRepositoryProvider)
         .addItem(
           BackupItem(
-            // increment id index
-            id: state.length.toString(),
+            // increment id
+            id: BackupItem.createIndex(state.length),
             path: path,
             folderName: folderName,
           ),

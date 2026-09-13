@@ -20,7 +20,7 @@ Future<void> isarJsonHiveImportMigration(String defaultDirectory) async {
         if (repo.getAllItems().isEmpty) {
           for (final (index, item) in items.indexed) {
             final effectiveItem = BackupItem(
-              id: index.toString(), // use as new id
+              id: BackupItem.createIndex(index), // use as new id
               path: item.path,
               folderName: item.folderName,
             );

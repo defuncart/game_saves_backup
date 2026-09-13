@@ -23,6 +23,8 @@ class BackupItem {
     );
   }
 
+  static String createIndex(int index) => 'index-${index.toString().padLeft(3, '0')}';
+
   @override
   String toString() => 'BackupItem(id: $id, path: $path, folderName: $folderName)';
 
