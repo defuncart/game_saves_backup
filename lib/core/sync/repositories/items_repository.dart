@@ -26,7 +26,7 @@ class HiveItemsRepository extends ItemsRepository {
   }
 
   @override
-  Iterable<BackupItem> getAllItems() => _box.values;
+  Iterable<BackupItem> getAllItems() => _box.values.toList()..sort((a, b) => a.createdAt.compareTo(b.createdAt));
 
   @override
   void addItem(BackupItem item) => _box.put(item.id, item);

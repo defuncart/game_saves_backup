@@ -70,5 +70,6 @@ String determineFolderNameForPath(String path) {
 bool hasBackupItems(Ref ref) => ref.watch(backupItemsProvider).isNotEmpty;
 
 extension on BackupItem {
-  BackupItem updateFolderName(String folderName) => BackupItem(id: id, folderName: folderName, path: path);
+  BackupItem updateFolderName(String folderName) =>
+      BackupItem(id: id, folderName: folderName, path: path, createdAt: createdAt);
 }

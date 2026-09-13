@@ -8,7 +8,7 @@ part of 'items_repository.dart';
 
 class BackupItemAdapter extends TypeAdapter<BackupItem> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   BackupItem read(BinaryReader reader) {
@@ -20,19 +20,22 @@ class BackupItemAdapter extends TypeAdapter<BackupItem> {
       id: fields[0] as String,
       path: fields[1] as String,
       folderName: fields[2] as String,
+      createdAt: fields[3] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, BackupItem obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.path)
       ..writeByte(2)
-      ..write(obj.folderName);
+      ..write(obj.folderName)
+      ..writeByte(3)
+      ..write(obj.createdAt);
   }
 
   @override
@@ -41,7 +44,5 @@ class BackupItemAdapter extends TypeAdapter<BackupItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is BackupItemAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+      other is BackupItemAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }
