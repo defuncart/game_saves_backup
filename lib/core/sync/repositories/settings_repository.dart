@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
 abstract class SyncSettingsRepository {
   String? get syncDirectory;
@@ -12,8 +12,10 @@ class HiveSyncSettingsRepository extends SyncSettingsRepository {
   static const _name = 'sync_settings';
 
   HiveSyncSettingsRepository() {
-    _box = Hive.box<dynamic>(name: _name);
+    _box = Hive.box<dynamic>(_name);
   }
+
+  static Future<void> init() => Hive.openBox<dynamic>(_name);
 
   @override
   String? get syncDirectory => _box.get(_Keys.syncDirectory) as String?;

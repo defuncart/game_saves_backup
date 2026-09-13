@@ -6,7 +6,7 @@ part of 'sync_items_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$syncSettingsRepositoryHash() => r'8f77cb3ac719fde462700c2ad41587dcc63e47ce';
+String _$syncSettingsRepositoryHash() => r'68010034b43666339460475ce1b164a9f0a3c65f';
 
 /// See also [_syncSettingsRepository].
 @ProviderFor(_syncSettingsRepository)
@@ -21,7 +21,7 @@ final _syncSettingsRepositoryProvider = AutoDisposeProvider<SyncSettingsReposito
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef _SyncSettingsRepositoryRef = AutoDisposeProviderRef<SyncSettingsRepository>;
-String _$filesRepositoryHash() => r'5324da4beee0847fbeb60560d11e8a83092d516d';
+String _$filesRepositoryHash() => r'56beda946e50e4e4dfdef690c361ede6737ebd45';
 
 /// See also [_filesRepository].
 @ProviderFor(_filesRepository)
@@ -36,7 +36,7 @@ final _filesRepositoryProvider = AutoDisposeProvider<FilesRepository>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef _FilesRepositoryRef = AutoDisposeProviderRef<FilesRepository>;
-String _$backupItemExistsHash() => r'76658db805b09e5c73fdc9301ef4093f1fd1e01d';
+String _$backupItemExistsHash() => r'6f5d1db4a689faae58f1590d8aac28085db477ce';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -69,13 +69,21 @@ class BackupItemExistsFamily extends Family<AsyncValue<bool>> {
   const BackupItemExistsFamily();
 
   /// See also [backupItemExists].
-  BackupItemExistsProvider call({required String path}) {
-    return BackupItemExistsProvider(path: path);
+  BackupItemExistsProvider call({
+    required String path,
+  }) {
+    return BackupItemExistsProvider(
+      path: path,
+    );
   }
 
   @override
-  BackupItemExistsProvider getProviderOverride(covariant BackupItemExistsProvider provider) {
-    return call(path: provider.path);
+  BackupItemExistsProvider getProviderOverride(
+    covariant BackupItemExistsProvider provider,
+  ) {
+    return call(
+      path: provider.path,
+    );
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -95,16 +103,20 @@ class BackupItemExistsFamily extends Family<AsyncValue<bool>> {
 /// See also [backupItemExists].
 class BackupItemExistsProvider extends AutoDisposeFutureProvider<bool> {
   /// See also [backupItemExists].
-  BackupItemExistsProvider({required String path})
-    : this._internal(
-        (ref) => backupItemExists(ref as BackupItemExistsRef, path: path),
-        from: backupItemExistsProvider,
-        name: r'backupItemExistsProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$backupItemExistsHash,
-        dependencies: BackupItemExistsFamily._dependencies,
-        allTransitiveDependencies: BackupItemExistsFamily._allTransitiveDependencies,
-        path: path,
-      );
+  BackupItemExistsProvider({
+    required String path,
+  }) : this._internal(
+         (ref) => backupItemExists(
+           ref as BackupItemExistsRef,
+           path: path,
+         ),
+         from: backupItemExistsProvider,
+         name: r'backupItemExistsProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$backupItemExistsHash,
+         dependencies: BackupItemExistsFamily._dependencies,
+         allTransitiveDependencies: BackupItemExistsFamily._allTransitiveDependencies,
+         path: path,
+       );
 
   BackupItemExistsProvider._internal(
     super._createNotifier, {
@@ -119,7 +131,9 @@ class BackupItemExistsProvider extends AutoDisposeFutureProvider<bool> {
   final String path;
 
   @override
-  Override overrideWith(FutureOr<bool> Function(BackupItemExistsRef provider) create) {
+  Override overrideWith(
+    FutureOr<bool> Function(BackupItemExistsRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: BackupItemExistsProvider._internal(
